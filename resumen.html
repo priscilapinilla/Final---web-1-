@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de tu Viaje</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Resumen de tu Viaje</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Detalles del Viaje</h2>
+            <p><strong>Ciudad:</strong> <span id="selected-city">Cargando...</span></p>
+            <p><strong>Hotel:</strong> <span id="selected-hotel">Cargando...</span></p>
+            <p><strong>Total:</strong> <span id="final-total">Cargando...</span></p>
+            <p><strong>Número de Personas:</strong> <span id="selected-personas">Cargando...</span></p>
+            <p><strong>Número de Noches:</strong> <span id="selected-noches">Cargando...</span></p>
+        </section>
+        <section>
+            <h3>Datos personales</h3>
+            <form id="reservation-form">
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Nombre" required>
+                    <input type="text" id="surname" placeholder="Apellido" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="tel" id="phone" placeholder="Teléfono" required>
+                </div>
+            </form>
+        </section>
+        <section class="form-actions">
+            <button class="cancel" onclick="window.location.href='index.html'">Cancelar Viaje</button>
+            <button class="confirm" onclick="submitForm(event)">Confirmar Viaje</button>
+        </section>
+    </div>
+
+    <script src="localstore.js"></script>
+
+    <script>
+        function loadResumenDatos() {
+            const selectedCityDetails = JSON.parse(localStorage.getItem('selectedCityDetails'));
+
+            if (selectedCityDetails) {
+                document.getElementById("selected-city").textContent = selectedCityDetails.city || "No seleccionado";
+                document.getElementById("selected-hotel").textContent = selectedCityDetails.hotel || "No seleccionado";
+                document.getElementById("final-total").textContent = `$${selectedCityDetails.totalPrice}` || "$0";
+                document.getElementById("selected-personas").textContent = selectedCityDetails.numPersonas || "No especificado";
+                document.getElementById("selected-noches").textContent = selectedCityDetails.numNoches || "No especificado";
+            } else {
+                document.getElementById("selected-city").textContent = "No seleccionado";
+                document.getElementById("selected-hotel").textContent = "No seleccionado";
+                document.getElementById("final-total").textContent = "$0";
+                document.getElementById("selected-personas").textContent = "No especificado";
+                document.getElementById("selected-noches").textContent = "No especificado";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadResumenDatos);
+    </script>
+</body>
+</html>

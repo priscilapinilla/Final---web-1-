@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Destino</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Detalles de tu destino</h1>
+    </header>
+
+    <div class="container">
+        <div class="ciudad-info">
+            <h2 id="city-name"></h2> 
+            <p id="city-desc"></p> 
+            <p id="city-price">Precio Base: $</p>
+        </div>
+
+        <div class="hotel-list">
+            <h3>Selecciona tu Hotel</h3>
+            <select id="hotel-select" onchange="selectHotel()">
+                <option value="">--Elige un hotel--</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="num-peoples">Número de Personas:</label>
+            <input type="number" id="num-peoples" value="1" min="1" oninput="calcularTotal()">
+        </div>
+
+        <div class="form-group">
+            <label for="num-nights">Número de Noches:</label>
+            <input type="number" id="num-nights" value="1" min="1" oninput="calcularTotal()">
+        </div>
+
+        <div class="calc">
+            <p>Total: $<span id="total-price">5000</span></p>
+        </div>
+
+        <button class="btn" onclick="GuardarDatos()">Ir al Resumen</button>
+    </div>
+
+    <script src="localstore.js"></script>
+</body>
+</html>
